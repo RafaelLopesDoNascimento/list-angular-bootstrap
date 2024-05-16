@@ -1,0 +1,75 @@
+<div class="container-fluid">
+  <app-header class="bg-secondary-subtle"></app-header>
+  <div class="row bg-primary-subtle min-height">
+    <div class="col-md-6">
+      <h1>Form</h1>
+      <label for="exampleInputEmail1" class="form-label">Input text </label>
+      <input
+        type="text"
+        name="title"
+        class="form-control"
+        id="exampleInputEmail1"
+        [(ngModel)]="listTitle"
+      />
+      <label for="exampleInputEmail1" class="form-label">Description text </label>
+      <input
+        type="text"
+        name="description"
+        class="form-control"
+        id="exampleInputEmail1"
+        [(ngModel)]="listDescription"
+      />
+  
+      <label for="">Situation text </label>
+      <div class="form-check row">
+        <div class="radio">
+          <input
+            class="form-check-input"
+            type="radio"
+            name="flexRadioDefault"
+            id="flexRadioDefault1"
+            value="Completed"
+            [(ngModel)]="listSituation"
+          />
+          <label for="html">Completed</label>
+        </div>
+        <div class="radio">
+          <input
+            class="form-check-input"
+            type="radio"
+            name="flexRadioDefault"
+            id="flexRadioDefault1"
+            value="InProgress"
+            [(ngModel)]="listSituation"
+          />
+          <label for="css">In progress</label>
+        </div>
+      </div>
+      <button (click)="getData()" class="btn btn-primary mt-5 button-width">Send</button>
+    </div>
+    <div class="col-md-6">
+      <h1>Table</h1>
+      <table class="table table-borderless">
+        <thead>
+          <tr>
+            <th scope="col">Title</th>
+            <th scope="col">Description</th>
+            <th scope="col">Situation</th>
+            <th>#</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for(item of list; track item;) {
+          <tr [class.table-warning] = "item.situation == 'InProgress'" [class.table-light] = "item.situation == null" [class.table-success] = "item.situation == 'Completed'">
+            <td>{{ item.title }}</td>
+            <td>{{ item.description }}</td>
+            <td>{{ item.situation }}</td>
+            <td><button (click)="removeData(item)" type="button" class="btn btn-danger">Remove</button></td>
+            <!-- [class.background-red] = "age > 30 " [class.background-blue] = "age <= 30 " -->
+          </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
